@@ -13,25 +13,25 @@ struct MainView: View {
     var body: some View {
         ZStack{
             Color(red: 128/255, green: 138/255, blue: 159/255).edgesIgnoringSafeArea(.all)
-        
-            VStack{
+       
+            ScrollView(showsIndicators: false){
                 Header()
                 .shadow(radius: 10, y: 6)
                 
                 if Show_delete_menu{
                     Delete_menu(Show_menu: $Show_delete_menu)
-                        .frame(height: 65)
-                        .padding(.top, 40)
+                        .frame(width: UIScreen.main.bounds.width - 70, height: 65)
+                        .padding(.top, 80)
                 }
                 else if Show_search_bar{
                     Search_bar(Show_search_bar: $Show_search_bar)
-                        .frame(height: 65)
-                        .padding(.top, 40)
+                        .frame(width: UIScreen.main.bounds.width - 70, height: 65)
+                        .padding(.top, 80)
                 }
                 else{
                     Folders_control_buttons(Show_menu: $Show_delete_menu, Show_search_bar: $Show_search_bar)
-                        .frame(height: 65)
-                        .padding(.top, 40)
+                        .frame(width: UIScreen.main.bounds.width - 70, height: 65)
+                        .padding(.top, 80)
                 }
                 
                  
@@ -43,12 +43,18 @@ struct MainView: View {
                 // .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
 
                 FolderView()
-                    .padding(.top, 30)
+                    
+                FolderView()
+                    
+                FolderView()
+                    
+                FolderView()
+                    
                 Spacer()
                                     
             }
             .kerning(4)
-            .frame(maxWidth: UIScreen.main.bounds.width - 70, maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
                         
             
             
@@ -72,9 +78,13 @@ struct Header: View {
                         .font(.system(size:25))
                         .foregroundColor(.white)
                 }
+                .frame(width: UIScreen.main.bounds.width - 70)
                 
                 
                 Weekly_goal_progress_bar()
+                    
+                    .frame(width: UIScreen.main.bounds.width - 70 - 80)
+                    .padding(.top, 20)
                 
                 Button("LEARN SETS"){}
                     .fontWeight(.semibold)
@@ -83,7 +93,7 @@ struct Header: View {
                     .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
                     .frame(width: UIScreen.main.bounds.width - 70, height: 65)
                     .background(LinearGradient(gradient: Gradient(colors: [Color(red: 110/255, green: 259/255, blue: 141/255), Color(red: 13/255, green: 236/255, blue: 235/255)]), startPoint: .top, endPoint: .bottom).cornerRadius(20))
-                    .padding(.top, 10)
+                    .padding(.top, 30)
                     
                    
             }
@@ -92,12 +102,8 @@ struct Header: View {
                 Circle()
                     .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
                     .frame(width: 750,height: 750)
-                    .padding(.bottom, 440)
+                    .padding(.bottom, 370)
             )
-        
-            
-        
-
     }
 }
 
@@ -122,33 +128,26 @@ struct Column_names: View {
         }
     }
 }
+
 struct Weekly_goal_progress_bar: View {
   
      var body: some View {
         HStack{
-            
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
-            RoundedRectangle(cornerRadius: 4)
-                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                .frame(width:10, height: 100)
+            ForEach(0..<8){ index in
+                Spacer()
+                ZStack{
+                    RoundedRectangle(cornerRadius: 6)
+                        .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
+                        .frame(width:20, height: 110)
+                                
+                    RoundedRectangle(cornerRadius: 3)
+                        .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
+                        .frame(width:10, height: 100)
+                }
+                Spacer()
+            }
            
+            
         }
     }
 }
@@ -259,7 +258,7 @@ struct Delete_menu: View {
             }
                 .fontWeight(.semibold)
                 .font(.system(size: 25))
-                .frame(width: UIScreen.main.bounds.width - 70 - 65 - 30)
+                .frame(width: UIScreen.main.bounds.width - 70 - 65 - 30, height: 65)
                 .background(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom).cornerRadius(20))
                 .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
                 .shadow(radius: 10, y:6)
