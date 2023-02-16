@@ -7,23 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		536003F62996E5EB00CBB84F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536003F52996E5EB00CBB84F /* AppDelegate.swift */; };
-		536003F82996E5EB00CBB84F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536003F72996E5EB00CBB84F /* SceneDelegate.swift */; };
-		536003FA2996E5EB00CBB84F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536003F92996E5EB00CBB84F /* ViewController.swift */; };
 		536003FF2996E5ED00CBB84F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 536003FE2996E5ED00CBB84F /* Assets.xcassets */; };
 		536004022996E5ED00CBB84F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536004002996E5ED00CBB84F /* LaunchScreen.storyboard */; };
 		536004102996EA7300CBB84F /* MCCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360040F2996EA7300CBB84F /* MCCard.swift */; };
+		536004122996F90100CBB84F /* FolderListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004112996F90100CBB84F /* FolderListViewViewModel.swift */; };
+		536004142996F98A00CBB84F /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004132996F98A00CBB84F /* FolderListView.swift */; };
+		536004162997A15100CBB84F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004152997A15100CBB84F /* MainView.swift */; };
+		536004182997CBB900CBB84F /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004172997CBB900CBB84F /* FolderView.swift */; };
+		53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FBB29D29986302005C6673 /* MemoCardsApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		536003F22996E5EB00CBB84F /* MemoCards.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoCards.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		536003F52996E5EB00CBB84F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		536003F72996E5EB00CBB84F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		536003F92996E5EB00CBB84F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		536003FE2996E5ED00CBB84F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		536004012996E5ED00CBB84F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		536004032996E5ED00CBB84F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5360040F2996EA7300CBB84F /* MCCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCCard.swift; sourceTree = "<group>"; };
+		536004112996F90100CBB84F /* FolderListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewViewModel.swift; sourceTree = "<group>"; };
+		536004132996F98A00CBB84F /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
+		536004152997A15100CBB84F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		536004172997CBB900CBB84F /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		53ED9C02299C2E510099B95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53FBB29D29986302005C6673 /* MemoCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCardsApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,12 +60,12 @@
 		536003F42996E5EB00CBB84F /* MemoCards */ = {
 			isa = PBXGroup;
 			children = (
+				53ED9C02299C2E510099B95C /* Info.plist */,
 				5360040E2996E92500CBB84F /* Resources */,
 				5360040D2996E8FC00CBB84F /* ViewModels */,
 				5360040C2996E8F400CBB84F /* Views */,
 				5360040B2996E8EC00CBB84F /* Models */,
 				5360040A2996E8E200CBB84F /* Controllers */,
-				536004032996E5ED00CBB84F /* Info.plist */,
 			);
 			path = MemoCards;
 			sourceTree = "<group>";
@@ -69,7 +73,6 @@
 		5360040A2996E8E200CBB84F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				536003F92996E5EB00CBB84F /* ViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -85,6 +88,8 @@
 		5360040C2996E8F400CBB84F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				536004132996F98A00CBB84F /* FolderListView.swift */,
+				536004172997CBB900CBB84F /* FolderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -92,6 +97,8 @@
 		5360040D2996E8FC00CBB84F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				536004112996F90100CBB84F /* FolderListViewViewModel.swift */,
+				536004152997A15100CBB84F /* MainView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -101,8 +108,7 @@
 			children = (
 				536003FE2996E5ED00CBB84F /* Assets.xcassets */,
 				536004002996E5ED00CBB84F /* LaunchScreen.storyboard */,
-				536003F52996E5EB00CBB84F /* AppDelegate.swift */,
-				536003F72996E5EB00CBB84F /* SceneDelegate.swift */,
+				53FBB29D29986302005C6673 /* MemoCardsApp.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -177,10 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				536003FA2996E5EB00CBB84F /* ViewController.swift in Sources */,
+				536004142996F98A00CBB84F /* FolderListView.swift in Sources */,
+				536004162997A15100CBB84F /* MainView.swift in Sources */,
+				536004182997CBB900CBB84F /* FolderView.swift in Sources */,
+				53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */,
 				536004102996EA7300CBB84F /* MCCard.swift in Sources */,
-				536003F62996E5EB00CBB84F /* AppDelegate.swift in Sources */,
-				536003F82996E5EB00CBB84F /* SceneDelegate.swift in Sources */,
+				536004122996F90100CBB84F /* FolderListViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,8 +332,8 @@
 				INFOPLIST_FILE = MemoCards/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -351,8 +359,8 @@
 				INFOPLIST_FILE = MemoCards/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
