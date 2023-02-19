@@ -11,99 +11,94 @@ struct MainView: View {
     @State var Show_delete_menu = false
     @State var Show_search_bar = false
     var body: some View {
-        ZStack{
-            Color(red: 128/255, green: 138/255, blue: 159/255).edgesIgnoringSafeArea(.all)
-       
-            ScrollView(showsIndicators: false){
-                Header()
-                .shadow(radius: 10, y: 6)
+        NavigationStack{
+            ZStack{
+                Color(red: 128/255, green: 138/255, blue: 159/255).edgesIgnoringSafeArea(.all)
                 
-                if Show_delete_menu{
-                    Delete_menu(Show_menu: $Show_delete_menu)
-                        .frame(width: UIScreen.main.bounds.width - 70, height: 65)
-                        .padding(.top, 80)
+                ScrollView(showsIndicators: false){
+                    Home_Header()
+                        .background(
+                            Circle()
+                                .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                .frame(width: 750, height: 750)
+                                .padding(.bottom, 370))
+                        .shadow(radius: 10, y: 6)
+                    
+                    if Show_delete_menu{
+                        Delete_menu(Show_menu: $Show_delete_menu)
+                            .frame(width: UIScreen.main.bounds.width - 50, height: 65)
+                            .padding(.top, 80)
+                    }
+                    else if Show_search_bar{
+                        Search_bar(Show_search_bar: $Show_search_bar)
+                            .frame(width: UIScreen.main.bounds.width - 50, height: 65)
+                            .padding(.top, 80)
+                    }
+                    else{
+                        Folders_control_buttons(Show_menu: $Show_delete_menu, Show_search_bar: $Show_search_bar)
+                            .frame(width: UIScreen.main.bounds.width - 50, height: 65)
+                            .padding(.top, 80)
+                    }
+                    
+                    
+                    Column_names()
+                    
+                        .padding(.top, 20)
+                    
+                    
+                    // .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
+                  
+                    NavigationLink(destination: SetView(), label: {FolderView()})
+                    
+                    NavigationLink(destination: SetView(), label: {FolderView()})
+                    
+                    NavigationLink(destination: SetView(), label: {FolderView()})
+                    
+                    NavigationLink(destination: SetView(), label: {FolderView()})
+                    
+                    Spacer()
+                    
                 }
-                else if Show_search_bar{
-                    Search_bar(Show_search_bar: $Show_search_bar)
-                        .frame(width: UIScreen.main.bounds.width - 70, height: 65)
-                        .padding(.top, 80)
-                }
-                else{
-                    Folders_control_buttons(Show_menu: $Show_delete_menu, Show_search_bar: $Show_search_bar)
-                        .frame(width: UIScreen.main.bounds.width - 70, height: 65)
-                        .padding(.top, 80)
-                }
+                .kerning(4)
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
                 
-                 
-                Column_names()
                 
-                .padding(.top, 20)
-
-
-                // .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-
-                FolderView()
-                    
-                FolderView()
-                    
-                FolderView()
-                    
-                FolderView()
-                    
-                Spacer()
-                                    
+                
             }
-            .kerning(4)
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-                        
-            
-            
         }
     }
 }
 
-struct Header: View {
-    
+struct Home_Header: View {
     var body: some View {
-        
             VStack{
                 HStack{
                     Text("MemoCards")
                         .fontWeight(.semibold)
                         .font(.system(size: 25))
                         .foregroundColor(.white)
+                    
                     Spacer()
+                    
                     Image(systemName: "gear")
                         .fontWeight(.semibold)
                         .font(.system(size:25))
                         .foregroundColor(.white)
                 }
-                .frame(width: UIScreen.main.bounds.width - 70)
-                
+                .frame(width: UIScreen.main.bounds.width - 50)
                 
                 Weekly_goal_progress_bar()
-                    
-                    .frame(width: UIScreen.main.bounds.width - 70 - 80)
+                    .frame(width: UIScreen.main.bounds.width - 50 - 80)
                     .padding(.top, 20)
                 
                 Button("LEARN SETS"){}
                     .fontWeight(.semibold)
                     .font(.system(size: 27))
-                
                     .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
                     .frame(width: UIScreen.main.bounds.width - 70, height: 65)
                     .background(LinearGradient(gradient: Gradient(colors: [Color(red: 110/255, green: 259/255, blue: 141/255), Color(red: 13/255, green: 236/255, blue: 235/255)]), startPoint: .top, endPoint: .bottom).cornerRadius(20))
                     .padding(.top, 30)
-                    
-                   
             }
-            
-            .background(
-                Circle()
-                    .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
-                    .frame(width: 750,height: 750)
-                    .padding(.bottom, 370)
-            )
     }
 }
 
@@ -111,30 +106,30 @@ struct Header: View {
 
 
 struct Column_names: View {
-    
     var body: some View {
         HStack{
-            
             Text("Name")
                 .font(.system(size: 23))
                 .padding(.leading, 50)
                 .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
+            
             Spacer()
+            
             Text("Cards")
                 .font(.system(size: 23))
                 .padding(.trailing, 50)
                 .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-            
         }
     }
 }
 
 struct Weekly_goal_progress_bar: View {
-  
      var body: some View {
         HStack{
-            ForEach(0..<8){ index in
+            ForEach(0..<7){ index in
+                 
                 Spacer()
+                 
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
@@ -144,10 +139,9 @@ struct Weekly_goal_progress_bar: View {
                         .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
                         .frame(width:10, height: 100)
                 }
+                
                 Spacer()
             }
-           
-            
         }
     }
 }
@@ -159,12 +153,13 @@ struct Folders_control_buttons: View {
         HStack{
             ZStack{
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom))
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
                     .shadow(radius: 10, y:6)
-                Image(systemName: "magnifyingglass")
+                
+                LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom)
+                    .mask(Image(systemName: "magnifyingglass")
                     .fontWeight(.semibold)
-                    .font(.system(size: 25))
-                    .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
+                    .font(.system(size: 25)))
             }
             .frame(width: 65, height: 65)
             .onTapGesture {
@@ -191,14 +186,17 @@ struct Folders_control_buttons: View {
             
             ZStack{
                 RoundedRectangle(cornerRadius: 20)
-                    .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom))
-                    .shadow(radius: 10, y:6)
-                Image(systemName: "trash")
+                
+                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom), style:StrokeStyle(lineWidth: 4))
+                    
+                LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom)
+                    .mask(Image(systemName: "trash")
                     .fontWeight(.semibold)
-                    .font(.system(size: 25))
-                    .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
+                    .font(.system(size: 25)))
+                    //.foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
             }
             .frame(width: 65, height: 65)
+            
             .onTapGesture {
                 withAnimation(.default){
                     Show_menu.toggle()
@@ -219,7 +217,7 @@ struct Search_bar: View {
                 .shadow(radius: 10, y:6)
                 .fontWeight(.semibold)
                 .font(.system(size: 25))
-                .frame(width: UIScreen.main.bounds.width - 70 - 65 - 30)
+                .frame(width: UIScreen.main.bounds.width - 50 - 65 - 10)
                 
                 .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
                 //.shadow(radius: 10, y:6)
@@ -258,7 +256,7 @@ struct Delete_menu: View {
             }
                 .fontWeight(.semibold)
                 .font(.system(size: 25))
-                .frame(width: UIScreen.main.bounds.width - 70 - 65 - 30, height: 65)
+                .frame(width: UIScreen.main.bounds.width - 50 - 65 - 10, height: 65)
                 .background(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom).cornerRadius(20))
                 .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
                 .shadow(radius: 10, y:6)

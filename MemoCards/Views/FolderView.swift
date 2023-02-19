@@ -32,13 +32,8 @@ struct FolderView: View {
                 
             }
         }
-        .frame(width:block_width, height: 65)
+        .frame(width: block_width, height: 65)
         .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-       
-        
-        
-        
-            
     }
 }
 

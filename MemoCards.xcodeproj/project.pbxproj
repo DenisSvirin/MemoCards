@@ -11,9 +11,10 @@
 		536004022996E5ED00CBB84F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536004002996E5ED00CBB84F /* LaunchScreen.storyboard */; };
 		536004102996EA7300CBB84F /* MCCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360040F2996EA7300CBB84F /* MCCard.swift */; };
 		536004122996F90100CBB84F /* FolderListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004112996F90100CBB84F /* FolderListViewViewModel.swift */; };
-		536004142996F98A00CBB84F /* FolderListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004132996F98A00CBB84F /* FolderListView.swift */; };
 		536004162997A15100CBB84F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004152997A15100CBB84F /* MainView.swift */; };
 		536004182997CBB900CBB84F /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004172997CBB900CBB84F /* FolderView.swift */; };
+		53D2D9B4299E1F0B005B12C7 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2D9B3299E1F0B005B12C7 /* SetView.swift */; };
+		53D2D9B6299E2800005B12C7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2D9B5299E2800005B12C7 /* CardView.swift */; };
 		53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FBB29D29986302005C6673 /* MemoCardsApp.swift */; };
 /* End PBXBuildFile section */
 
@@ -23,9 +24,10 @@
 		536004012996E5ED00CBB84F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5360040F2996EA7300CBB84F /* MCCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCCard.swift; sourceTree = "<group>"; };
 		536004112996F90100CBB84F /* FolderListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewViewModel.swift; sourceTree = "<group>"; };
-		536004132996F98A00CBB84F /* FolderListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListView.swift; sourceTree = "<group>"; };
 		536004152997A15100CBB84F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		536004172997CBB900CBB84F /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		53D2D9B3299E1F0B005B12C7 /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
+		53D2D9B5299E2800005B12C7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		53ED9C02299C2E510099B95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		53FBB29D29986302005C6673 /* MemoCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCardsApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,8 +90,8 @@
 		5360040C2996E8F400CBB84F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				536004132996F98A00CBB84F /* FolderListView.swift */,
 				536004172997CBB900CBB84F /* FolderView.swift */,
+				53D2D9B5299E2800005B12C7 /* CardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -99,6 +101,7 @@
 			children = (
 				536004112996F90100CBB84F /* FolderListViewViewModel.swift */,
 				536004152997A15100CBB84F /* MainView.swift */,
+				53D2D9B3299E1F0B005B12C7 /* SetView.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -183,11 +186,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				536004142996F98A00CBB84F /* FolderListView.swift in Sources */,
 				536004162997A15100CBB84F /* MainView.swift in Sources */,
+				53D2D9B4299E1F0B005B12C7 /* SetView.swift in Sources */,
 				536004182997CBB900CBB84F /* FolderView.swift in Sources */,
 				53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */,
 				536004102996EA7300CBB84F /* MCCard.swift in Sources */,
+				53D2D9B6299E2800005B12C7 /* CardView.swift in Sources */,
 				536004122996F90100CBB84F /* FolderListViewViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

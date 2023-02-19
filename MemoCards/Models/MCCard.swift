@@ -11,6 +11,6 @@ struct Card {
     // Add images for question and answer
     let question: String
     let answer: String
-    let corrent_guesses: Int
+    let correct_guesses: Int
     let incorrent_guesses: Int
 }
