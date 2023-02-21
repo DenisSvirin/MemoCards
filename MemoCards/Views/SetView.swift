@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SetView: View {
+    
     @State var test : Bool = false
     @State var test1 : Bool = false
     
@@ -27,8 +28,20 @@ struct SetView: View {
                             .padding(.bottom, 370))
                         .shadow(radius: 20)
                     
-                    Folders_control_buttons(Show_menu: $test, Show_search_bar: $test1)
-                        .frame(width: UIScreen.main.bounds.width - 70)
+                    HStack{
+                        SearchButton()
+                            .frame(width: 65)
+                        
+                        Spacer()
+                        
+                        AddButton()
+                        
+                        Spacer()
+                        
+                        DeleteButton()
+                            .frame(width: 65)
+                    }
+                        .frame(width: UIScreen.main.bounds.width - 50, height: 65)
                         .padding(.top, 110)
                     
                 

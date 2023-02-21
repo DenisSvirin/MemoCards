@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct MemoCardsApp: App {
+    @StateObject var folderListViewModel: FolderListViewModel = FolderListViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            MainView()
+                MainView()
+                .environmentObject(folderListViewModel)
         }
     }
 }

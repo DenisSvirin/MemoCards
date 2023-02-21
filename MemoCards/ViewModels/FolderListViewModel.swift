@@ -5,9 +5,10 @@
 //  Created by Denis Svirin on 11.02.2023.
 //
 
-import UIKit
+import Foundation
 
-final class FolderListViewViewModel:NSObject {
+class FolderListViewModel: ObservableObject {
+    @Published var Folders: [MCFolder] = []
     
 }
 

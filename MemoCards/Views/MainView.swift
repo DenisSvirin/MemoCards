@@ -8,8 +8,12 @@
 import SwiftUI
 
 struct MainView: View {
+    @EnvironmentObject var folderViewModel: FolderListViewModel
     @State var Show_delete_menu = false
     @State var Show_search_bar = false
+    
+    
+    @State var c:Int = 0
     var body: some View {
         NavigationStack{
             ZStack{
@@ -47,14 +51,11 @@ struct MainView: View {
                     
                     
                     // .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-                  
-                    NavigationLink(destination: SetView(), label: {FolderView()})
                     
-                    NavigationLink(destination: SetView(), label: {FolderView()})
+                    ForEach(folderViewModel.Folders){ Fname in
+                        NavigationLink(destination: SetView(), label: {FolderView(FolderName: Fname.FolderName, CardCount: c)})
                     
-                    NavigationLink(destination: SetView(), label: {FolderView()})
-                    
-                    NavigationLink(destination: SetView(), label: {FolderView()})
+                    }
                     
                     Spacer()
                     
@@ -151,16 +152,7 @@ struct Folders_control_buttons: View {
     @Binding var Show_search_bar : Bool
     var body: some View {
         HStack{
-            ZStack{
-                RoundedRectangle(cornerRadius: 20)
-                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
-                    .shadow(radius: 10, y:6)
-                
-                LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom)
-                    .mask(Image(systemName: "magnifyingglass")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 25)))
-            }
+            SearchButton()
             .frame(width: 65, height: 65)
             .onTapGesture {
                 withAnimation(.default){
@@ -170,31 +162,14 @@ struct Folders_control_buttons: View {
             }
             
             Spacer()
+            NavigationLink(destination: AddFolderView(), label: {AddButton()})
             
-            Button("ADD"){
-                print(":working")
-            }
-                .fontWeight(.semibold)
-                .font(.system(size: 25))
-                .frame(width: 140, height: 65)
-                .background(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom).cornerRadius(20))
             
-                .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-                .shadow(radius: 10, y:6)
+                
             
             Spacer()
             
-            ZStack{
-                RoundedRectangle(cornerRadius: 20)
-                
-                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom), style:StrokeStyle(lineWidth: 4))
-                    
-                LinearGradient(gradient: Gradient(colors: [Color(red: 241/255, green: 41/255, blue: 41/255), Color(red: 246/255, green: 224/255, blue: 18/255)]), startPoint: .top, endPoint: .bottom)
-                    .mask(Image(systemName: "trash")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 25)))
-                    //.foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-            }
+            DeleteButton()
             .frame(width: 65, height: 65)
             
             .onTapGesture {

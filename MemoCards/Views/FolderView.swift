@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FolderView: View {
+    private(set) var FolderName: String?
+    private(set) var CardCount: Int?
     var body: some View {
         let block_width = UIScreen.main.bounds.size.width - 70
         ZStack{
@@ -20,14 +22,14 @@ struct FolderView: View {
                     .padding(.leading, 20)
                     .font(.system(size: 25))
                 Spacer()
-                Text("Untitled")
+                Text(FolderName ?? "UNTITLED")
                     .fontWeight(.bold)
-                    .font(.system(size: 25))
+                    .font(.system(size: 20))
                     .padding(.trailing, block_width / 4 - 40)
                 Spacer()
-                Text("53")
+                Text(String(CardCount ?? 0))
                     .fontWeight(.bold)
-                    .font(.system(size: 25))
+                    .font(.system(size: 20))
                     .padding(.trailing, 25)
                 
             }
