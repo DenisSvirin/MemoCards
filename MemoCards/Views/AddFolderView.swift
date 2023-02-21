@@ -25,8 +25,9 @@ struct AddFolderView: View {
                 TextField("Type something here...", text: $NewFolderName)
                     .padding(.horizontal)
                     .frame(height: 55)
+                    .overlay(RoundedRectangle(cornerRadius: 20)
+                        .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
                     
-                    .border(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), width: 3)
                     .cornerRadius(20)
                 AddButton()
                     .padding(.top, 20)
