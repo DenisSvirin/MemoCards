@@ -8,24 +8,30 @@
 import SwiftUI
 
 struct CardView: View {
+    var icon: Image = Image(systemName: "ellipsis.circle")
+    let question: String
+    let answer: String
+    let correct_guesses: Int
+    let wrong_guesses: Int
+   
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color(red: 128/255, green: 138/255, blue: 159/255))
             HStack{
                 VStack(alignment: .leading, spacing: 0, content: {
-                    Text("Question")
+                    Text(question)
                         .padding(.leading, 10)
                         .padding(.top, 20)
                     Spacer()
-                    Text("Answer")
+                    Text(answer)
                         .padding(.leading, 10)
                         .padding(.bottom, 10)
                 })
                
                 Spacer()
                 VStack {
-                    EditButton()
+                    TopRightButtonCardView(icon: icon)
                     Spacer()
                     Rate_Circle(frame_size: 22, completion: 100, noText: true, lineWidth: 4)
                         .padding(.bottom, 10)
@@ -40,9 +46,10 @@ struct CardView: View {
     }
 }
 
-struct EditButton: View {
+struct TopRightButtonCardView: View {
+    let icon: Image
     var body: some View {
-        Image(systemName: "ellipsis.circle")
+       icon
             .font(.system(size: 26))
             .padding(.top, 10)
     
@@ -50,8 +57,4 @@ struct EditButton: View {
 }
 
 
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView()
-    }
-}
+

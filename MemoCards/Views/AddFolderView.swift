@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AddFolderView: View {
-    @EnvironmentObject var folderViewModel: FolderListViewModel
+    @Environment(\.presentationMode) var presentationMode
+    @Environment(\.managedObjectContext) var moc
     @State var NewFolderName: String = ""
    
-    @Environment(\.presentationMode) var presentationMode
+    
     
     var body: some View {
         ZStack{
@@ -32,8 +33,12 @@ struct AddFolderView: View {
                 AddButton()
                     .padding(.top, 20)
                     .onTapGesture {
-                        folderViewModel.Folders.append(MCFolder(FolderName: NewFolderName, Cards: []) )
+                        let newFolder = FolderEntity(context: moc)
+                        newFolder.name = NewFolderName
+                        //folderViewModel.Folders.append(MCFolder(FolderName: NewFolderName, Cards: []) )
+                        try? moc.save()
                         presentationMode.wrappedValue.dismiss()
+                        
                         
                     }
                 Spacer()

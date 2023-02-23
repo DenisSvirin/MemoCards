@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5328695829A6C36A00852085 /* MemoCards.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5328695629A6C36A00852085 /* MemoCards.xcdatamodeld */; };
+		5328695A29A6C46000852085 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5328695929A6C46000852085 /* DataController.swift */; };
 		532A94F729A55CE100E6A311 /* MCFolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532A94F629A55CE100E6A311 /* MCFolder.swift */; };
 		532A94F929A55EE700E6A311 /* AddFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532A94F829A55EE700E6A311 /* AddFolderView.swift */; };
 		532A94FC29A5644500E6A311 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532A94FB29A5644500E6A311 /* AddButton.swift */; };
@@ -16,15 +18,19 @@
 		536003FF2996E5ED00CBB84F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 536003FE2996E5ED00CBB84F /* Assets.xcassets */; };
 		536004022996E5ED00CBB84F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 536004002996E5ED00CBB84F /* LaunchScreen.storyboard */; };
 		536004102996EA7300CBB84F /* MCCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5360040F2996EA7300CBB84F /* MCCard.swift */; };
-		536004122996F90100CBB84F /* FolderListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004112996F90100CBB84F /* FolderListViewModel.swift */; };
 		536004162997A15100CBB84F /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004152997A15100CBB84F /* MainView.swift */; };
 		536004182997CBB900CBB84F /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536004172997CBB900CBB84F /* FolderView.swift */; };
+		5391B95229A7DCEE00A2A113 /* DeleteCardsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5391B95129A7DCEE00A2A113 /* DeleteCardsView.swift */; };
 		53D2D9B4299E1F0B005B12C7 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2D9B3299E1F0B005B12C7 /* SetView.swift */; };
 		53D2D9B6299E2800005B12C7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2D9B5299E2800005B12C7 /* CardView.swift */; };
+		53F9A32F29A79FB900C8250A /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A32E29A79FB900C8250A /* AddCardView.swift */; };
+		53F9A33129A7ACD100C8250A /* DeleteFoldersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A33029A7ACD100C8250A /* DeleteFoldersView.swift */; };
 		53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FBB29D29986302005C6673 /* MemoCardsApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5328695729A6C36A00852085 /* MemoCards.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoCards.xcdatamodel; sourceTree = "<group>"; };
+		5328695929A6C46000852085 /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 		532A94F629A55CE100E6A311 /* MCFolder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCFolder.swift; sourceTree = "<group>"; };
 		532A94F829A55EE700E6A311 /* AddFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddFolderView.swift; sourceTree = "<group>"; };
 		532A94FB29A5644500E6A311 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
@@ -35,12 +41,14 @@
 		536003FE2996E5ED00CBB84F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		536004012996E5ED00CBB84F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5360040F2996EA7300CBB84F /* MCCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MCCard.swift; sourceTree = "<group>"; };
-		536004112996F90100CBB84F /* FolderListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderListViewModel.swift; sourceTree = "<group>"; };
 		536004152997A15100CBB84F /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		536004172997CBB900CBB84F /* FolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		5391B95129A7DCEE00A2A113 /* DeleteCardsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteCardsView.swift; sourceTree = "<group>"; };
 		53D2D9B3299E1F0B005B12C7 /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
 		53D2D9B5299E2800005B12C7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		53ED9C02299C2E510099B95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53F9A32E29A79FB900C8250A /* AddCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCardView.swift; sourceTree = "<group>"; };
+		53F9A33029A7ACD100C8250A /* DeleteFoldersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteFoldersView.swift; sourceTree = "<group>"; };
 		53FBB29D29986302005C6673 /* MemoCardsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoCardsApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -85,6 +93,7 @@
 		536003F42996E5EB00CBB84F /* MemoCards */ = {
 			isa = PBXGroup;
 			children = (
+				5328695629A6C36A00852085 /* MemoCards.xcdatamodeld */,
 				53ED9C02299C2E510099B95C /* Info.plist */,
 				5360040E2996E92500CBB84F /* Resources */,
 				5360040D2996E8FC00CBB84F /* ViewModels */,
@@ -99,6 +108,7 @@
 		5360040A2996E8E200CBB84F /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				5328695929A6C46000852085 /* DataController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -120,6 +130,9 @@
 				53D2D9B3299E1F0B005B12C7 /* SetView.swift */,
 				53D2D9B5299E2800005B12C7 /* CardView.swift */,
 				532A94F829A55EE700E6A311 /* AddFolderView.swift */,
+				53F9A33029A7ACD100C8250A /* DeleteFoldersView.swift */,
+				5391B95129A7DCEE00A2A113 /* DeleteCardsView.swift */,
+				53F9A32E29A79FB900C8250A /* AddCardView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -127,7 +140,6 @@
 		5360040D2996E8FC00CBB84F /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				536004112996F90100CBB84F /* FolderListViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -215,16 +227,20 @@
 				536004162997A15100CBB84F /* MainView.swift in Sources */,
 				53D2D9B4299E1F0B005B12C7 /* SetView.swift in Sources */,
 				536004182997CBB900CBB84F /* FolderView.swift in Sources */,
+				5328695829A6C36A00852085 /* MemoCards.xcdatamodeld in Sources */,
 				532A94FC29A5644500E6A311 /* AddButton.swift in Sources */,
+				5391B95229A7DCEE00A2A113 /* DeleteCardsView.swift in Sources */,
 				532A94F929A55EE700E6A311 /* AddFolderView.swift in Sources */,
 				53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */,
 				532A950229A564AE00E6A311 /* ResetButton.swift in Sources */,
 				536004102996EA7300CBB84F /* MCCard.swift in Sources */,
 				532A94FE29A5649700E6A311 /* SearchButton.swift in Sources */,
+				5328695A29A6C46000852085 /* DataController.swift in Sources */,
 				532A950029A564A300E6A311 /* DeleteButton.swift in Sources */,
 				532A94F729A55CE100E6A311 /* MCFolder.swift in Sources */,
 				53D2D9B6299E2800005B12C7 /* CardView.swift in Sources */,
-				536004122996F90100CBB84F /* FolderListViewModel.swift in Sources */,
+				53F9A32F29A79FB900C8250A /* AddCardView.swift in Sources */,
+				53F9A33129A7ACD100C8250A /* DeleteFoldersView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +448,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5328695629A6C36A00852085 /* MemoCards.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5328695729A6C36A00852085 /* MemoCards.xcdatamodel */,
+			);
+			currentVersion = 5328695729A6C36A00852085 /* MemoCards.xcdatamodel */;
+			path = MemoCards.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 536003EA2996E5EB00CBB84F /* Project object */;
 }

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct FolderView: View {
+    var icon: Image = Image(systemName: "folder.fill")
     private(set) var FolderName: String?
     private(set) var CardCount: Int?
     var body: some View {
@@ -18,7 +19,7 @@ struct FolderView: View {
                 .shadow(radius: 10, y:10)
                 
             HStack{
-                Image(systemName: "folder.fill")
+                icon
                     .padding(.leading, 20)
                     .font(.system(size: 25))
                 Spacer()
