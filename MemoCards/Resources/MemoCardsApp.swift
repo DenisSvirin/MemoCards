@@ -13,7 +13,8 @@ struct MemoCardsApp: App {
     
     var body: some Scene {
         WindowGroup {
-                MainView()
+            
+            MainView()
                 
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }

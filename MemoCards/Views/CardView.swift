@@ -33,8 +33,13 @@ struct CardView: View {
                 VStack {
                     TopRightButtonCardView(icon: icon)
                     Spacer()
-                    Rate_Circle(frame_size: 22, completion: 100, noText: true, lineWidth: 4)
+                    if correct_guesses + wrong_guesses > 0{
+                        Rate_Circle(frame_size: 22, completion: Float(100 * (correct_guesses) / 5), noText: true, lineWidth: 4)
+                        .padding(.bottom, 10)}
+                    else{
+                        Rate_Circle(frame_size: 22, completion: 0.0, noText: true, lineWidth: 4)
                         .padding(.bottom, 10)
+                    }
                 }
                 .padding(.trailing, 10)
                 

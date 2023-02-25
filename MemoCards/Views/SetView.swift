@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SetView: View {
     @Environment(\.managedObjectContext) var moc
+    @Environment(\.presentationMode) var presentationMode
     @State var test : Bool = false
     @State var ShowDeleteMenu : Bool = false
     @State private var cardsToDelete: [CardEntity] = []
@@ -19,82 +20,119 @@ struct SetView: View {
     let entity: FolderEntity
     
     var body: some View {
-        
-        ZStack{
-            Color(red: 128/255, green: 138/255, blue: 159/255).edgesIgnoringSafeArea(.all)
-            
-            ScrollView(showsIndicators: false){
-                VStack{
-                    Set_Header(entity: entity)
-                        .padding(.top, 10)
-                        .background(Circle()
-                                    
-                            .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
-                            .frame(width: 750,height: 750)
-                            .padding(.bottom, 370))
-                        .shadow(radius: 20)
-                    
-                    if ShowDeleteMenu{
-                        SetDeletehView(Show_menu: $ShowDeleteMenu, cardsToDelete: $cardsToDelete)
-                            .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                            .padding(.top, 110)
-                            
-                    }
-                    else{
-                        HStack{
-                            SearchButton()
-                                .frame(width: 65)
-                            
-                            Spacer()
-                            
-                            NavigationLink(destination: AddCardView(entity: entity), label: {AddButton()})
-                            
-                            Spacer()
-                            
-                            DeleteButton()
-                                .frame(width: 65)
-                                .onTapGesture {
-                                    ShowDeleteMenu.toggle()
-                                }
-                            
-                        }
-                        .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                        .padding(.top, 110)
-                        
-                    }
-                    
-                    
-                    /*
-                     
-                     }*/
-                    
-                    
-                    ScrollView{
-                        LazyVGrid(columns: columns){
-                            if let cards = entity.cards?.allObjects as? [CardEntity] {
-                                ForEach(cards) {card in
-                                    if ShowDeleteMenu {
-                                        DeleteCardsView(card: card, cardsToDelete: $cardsToDelete)
-                                    }
-                                    else{
-                                        CardView(question: card.question ?? "?", answer: card.answer ?? "?", correct_guesses: Int(card.correct_guesses), wrong_guesses: Int(card.wrong_guesses))
-                                    }
-                                }
-                                .frame(height: 100)
-                                .shadow(radius: 10)
-                                .padding(.top, 10)
-                            }
-                        }
-                        
-                    
-                }
-                }
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        NavigationStack{
+            ZStack{
+                Color(red: 128/255, green: 138/255, blue: 159/255).edgesIgnoringSafeArea(.all)
                 
+                ScrollView(showsIndicators: false){
+                    VStack{
+                        HStack{
+                            NavigationLink(destination: MainView(), label: {
+                            Image(systemName: "arrow.backward")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .font(.title2)
+                            })
+                            
+                            Spacer()
+                            
+                            Text(entity.name ?? "UNKNOWN")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .font(.title)
+                                .multilineTextAlignment(.center)
+                                .frame(height: 80)
+                                
+                            
+                            Spacer()
+                            
+                            Image(systemName: "gear")
+                                .fontWeight(.bold)
+                                .foregroundColor(.white)
+                                .font(.title2)
+                            
+                        }
+                            .font(.headline)
+                            .padding(.top, 20)
+                            .padding(.horizontal)
+                            .background(Circle()
+                                .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                .frame(width: 850, height: 850)
+                                .shadow(radius: 20))
+                                //.padding(.bottom, 200))
+                        
+                        Set_Header(entity: entity)
+                            .frame(width: 390)
+                            .padding(.top, 10)
+                            
+                                //))
+                            //
+                        
+                        if ShowDeleteMenu{
+                            SetDeletehView(Show_menu: $ShowDeleteMenu, cardsToDelete: $cardsToDelete)
+                                .frame(width: UIScreen.main.bounds.width - 50, height: 65)
+                                .padding(.top, 80)
+                            
+                        }
+                        else{
+                            HStack{
+                                SearchButton()
+                                    .frame(width: 65)
+                                
+                                Spacer()
+                                
+                                NavigationLink(destination: AddCardView(entity: entity), label: {AddButton()})
+                                
+                                Spacer()
+                                
+                                DeleteButton()
+                                    .frame(width: 65)
+                                    .onTapGesture {
+                                        ShowDeleteMenu.toggle()
+                                    }
+                                
+                            }
+                            .frame(width: UIScreen.main.bounds.width - 50, height: 65)
+                            .padding(.top, 80)
+                            
+                        }
+                        
+                        
+                        /*
+                         
+                         }*/
+                        
+                        
+                        ScrollView{
+                            LazyVGrid(columns: columns){
+                                if let cards = entity.cards?.allObjects as? [CardEntity] {
+                                    ForEach(cards) {card in
+                                        if ShowDeleteMenu {
+                                            DeleteCardsView(card: card, cardsToDelete: $cardsToDelete)
+                                        }
+                                        else{
+                                            CardView(question: card.question ?? "?", answer: card.answer ?? "?", correct_guesses: Int(card.correct_guesses), wrong_guesses: Int(card.wrong_guesses))
+                                        }
+                                    }
+                                    .frame(height: 100)
+                                    .shadow(radius: 10)
+                                    .padding(.top, 10)
+                                }
+                            }
+                            
+                            
+                        }
+                    }
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    
+                }
             }
+            .kerning(3)
         }
-        .kerning(3)
+        .navigationBarHidden(true)
     }
+    
+    
 }
 
 
@@ -102,10 +140,6 @@ struct Set_Header: View {
     let entity: FolderEntity
     var body: some View {
         VStack{
-            Text(entity.name ?? "UNKNOWN")
-                .fontWeight(.bold)
-                .foregroundColor(.white)
-                .font(.title)
             HStack{
                 VStack{
                     
@@ -123,7 +157,7 @@ struct Set_Header: View {
                 Spacer()
                 
                 VStack{
-                    Rate_Circle(frame_size: 140, completion: 50, noText: false, lineWidth: 10)
+                    Rate_Circle(frame_size: 140, completion: Float(100 * getLearntAmount() / (entity.cards?.count ?? 0)), noText: false, lineWidth: 10)
                     
                     Text("LEARNED")
                         .fontWeight(.semibold)
@@ -132,12 +166,30 @@ struct Set_Header: View {
                 }
                 .frame( height: 140)
                 .padding(.trailing, 30)
-            }.padding(.top, 35)
+            }
+            .padding(.top, 35)
+            
+            NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "LEARN")} )
+                    .padding(.top, 35)
         }
+        
+    }
+    func getLearntAmount() -> Int{
+        var result = 0
+        if let cards = entity.cards?.allObjects as? [CardEntity] {
+            for card in cards {
+                if card.correct_guesses > 4{
+                    result += 1
+                }
+                
+            }
+        }
+        return result
     }
 }
 
 struct Rate_Circle: View {
+    var color: LinearGradient = LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom)
     var frame_size: CGFloat
     var completion: Float
     var noText: Bool
@@ -146,14 +198,14 @@ struct Rate_Circle: View {
         ZStack{
             Circle()
                 .trim(from: 0, to: 1)
-                .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: lineWidth))
+                .stroke(color, style: StrokeStyle(lineWidth: lineWidth))
                 .opacity(0.13)
             Circle()
                 .trim(from: 0, to: CGFloat(completion / 100) )
-                .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: lineWidth))
+                .stroke(color, style: StrokeStyle(lineWidth: lineWidth))
                 
                 
-            LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom)
+            color
                 .mask(
                     Text(noText ? "" : String(completion) + "%")
                 .font(.system(size: 23))

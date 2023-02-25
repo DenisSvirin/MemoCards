@@ -11,8 +11,11 @@ struct FolderView: View {
     var icon: Image = Image(systemName: "folder.fill")
     private(set) var FolderName: String?
     private(set) var CardCount: Int?
+    let block_width = UIScreen.main.bounds.size.width - 70
+    
     var body: some View {
         let block_width = UIScreen.main.bounds.size.width - 70
+        
         ZStack{
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color(red: 128/255, green: 138/255, blue: 159/255))

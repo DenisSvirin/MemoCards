@@ -16,7 +16,7 @@ struct DeleteFoldersView: View {
             
             ForEach(folders){ Fname in
                 if foldersToDelete.contains(Fname) {
-                    FolderView(icon: Image(systemName: "checkmark.circle"), FolderName: Fname.name ?? "UNKNOWN", CardCount: 0)
+                    FolderView(icon: Image(systemName: "checkmark.circle"), FolderName: Fname.name ?? "UNKNOWN", CardCount: Fname.cards?.count)
                         
                         .onTapGesture {
                             if let index = foldersToDelete.firstIndex(of: Fname) {
@@ -26,7 +26,7 @@ struct DeleteFoldersView: View {
                         }
                 }
                 else{
-                    FolderView(icon: Image(systemName: "circle"), FolderName: Fname.name ?? "UNKNOWN", CardCount: 0)
+                    FolderView(icon: Image(systemName: "circle"), FolderName: Fname.name ?? "UNKNOWN", CardCount: Fname.cards?.count)
                         
                         .onTapGesture {
                             foldersToDelete.append(Fname)

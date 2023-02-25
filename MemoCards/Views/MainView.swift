@@ -9,12 +9,10 @@ import SwiftUI
 
 struct MainView: View {
     @Environment(\.managedObjectContext) var moc
-    
     @State var Show_delete_menu = false
     @State var Show_search_bar = false
     @State private var foldersToDelete: [FolderEntity]  = []
     @FetchRequest(sortDescriptors: []) var folders: FetchedResults<FolderEntity>
-    
     @State var c:Int = 0
     var body: some View {
         NavigationStack{
@@ -27,30 +25,25 @@ struct MainView: View {
                             .background(
                                 Circle()
                                     .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
-                                    .frame(width: 750, height: 750)
-                                    .padding(.bottom, 370))
+                                    .frame(width: 800, height: 800)
+                                    .padding(.bottom, 500))
                             .shadow(radius: 10, y: 6)
                         
                         if Show_delete_menu{
                             Delete_menu(Show_menu: $Show_delete_menu, foldersToDelete: $foldersToDelete)
                                 .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                                .padding(.top, 80)
+                                .padding(.top, 90)
                         }
                         else if Show_search_bar{
                             Search_bar(Show_search_bar: $Show_search_bar)
                                 .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                                .padding(.top, 80)
+                                .padding(.top, 90)
                         }
                         else{
                             Folders_control_buttons(Show_menu: $Show_delete_menu, Show_search_bar: $Show_search_bar)
                                 .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                                .padding(.top, 80)
+                                .padding(.top, 90)
                         }
-                        
-                        
-                        
-                        
-                        
                         
                         
                         // .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
@@ -73,20 +66,13 @@ struct MainView: View {
                             }
                         }
                         Spacer()
-                        
-                        
-                        
-                        
-                        
                     }
                     .kerning(4)
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    
-                    
-                    
                 }
             }
         }
+        .navigationBarHidden(true)
     }
 }
 
@@ -112,13 +98,8 @@ struct Home_Header: View {
                     .frame(width: UIScreen.main.bounds.width - 50 - 80)
                     .padding(.top, 20)
                 
-                Button("LEARN SETS"){}
-                    .fontWeight(.semibold)
-                    .font(.system(size: 27))
-                    .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
-                    .frame(width: UIScreen.main.bounds.width - 70, height: 65)
-                    .background(LinearGradient(gradient: Gradient(colors: [Color(red: 110/255, green: 259/255, blue: 141/255), Color(red: 13/255, green: 236/255, blue: 235/255)]), startPoint: .top, endPoint: .bottom).cornerRadius(20))
-                    .padding(.top, 30)
+                //NavigationLink(destination: SelectFoldersFortheGameView(), label: {LearnSetsButton()})
+                
             }
     }
 }
@@ -128,22 +109,23 @@ struct Weekly_goal_progress_bar: View {
      var body: some View {
         HStack{
             ForEach(0..<7){ index in
-                 
                 Spacer()
-                 
+                
                 ZStack{
                     RoundedRectangle(cornerRadius: 6)
                         .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
-                        .frame(width:20, height: 110)
+                        .frame(width:20, height: 120)
                                 
                     RoundedRectangle(cornerRadius: 3)
                         .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                        .frame(width:10, height: 100)
+                        .frame(width:10, height: 110)
                 }
+                .padding(.horizontal, 4)
                 
                 Spacer()
             }
         }
+        .padding(.horizontal)
     }
 }
 
@@ -163,9 +145,6 @@ struct Folders_control_buttons: View {
             
             Spacer()
             NavigationLink(destination: AddFolderView(), label: {AddButton()})
-            
-            
-                
             
             Spacer()
             
