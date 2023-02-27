@@ -11,6 +11,10 @@ struct AfterGameView: View {
     let entity: FolderEntity
     let correct_guesses: Int
     let wrong_guesses: Int
+    
+    @Binding var currentDayProgress: Int
+    let date = Date()
+    let calendar = Calendar.current
     var body: some View {
         NavigationStack{
             ZStack{
@@ -18,7 +22,7 @@ struct AfterGameView: View {
                 VStack(spacing: 30){
                     HStack{
                         
-                        NavigationLink(destination: SetView(entity: entity), label: {Image(systemName: "xmark")})
+                        NavigationLink(destination: SetView(currentDayProgress: $currentDayProgress, entity: entity), label: {Image(systemName: "xmark")})
                             
                         Spacer()
                         
@@ -124,7 +128,7 @@ struct AfterGameView: View {
                     }
                     .frame(width: 340, height: 200)
                     
-                    NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "RESTART")
+                    NavigationLink(destination: SwipeCardsGameView(currentDayProgress: $currentDayProgress, entity: entity), label: {BlueButton(buttonText: "RESTART")
                             .frame(width:200, height: 65)
                     })
                         .kerning(3)
@@ -137,6 +141,11 @@ struct AfterGameView: View {
             }
         }
         .navigationBarHidden(true)
+        .onAppear(perform: {
+            print(currentDayProgress)
+            if currentDayProgress < 4{
+                currentDayProgress += 1}
+        })
     }
 }
 

@@ -14,6 +14,7 @@ struct SwipeCardsGameView: View {
     @State var frontDegree = -90.0
     @State var correct_gueses = 0
     @State var wrong_gueses = 0
+    @Binding var currentDayProgress: Int
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var moc
     let entity: FolderEntity
@@ -74,8 +75,8 @@ struct SwipeCardsGameView: View {
                            
                         }
                             else{
+                                AfterGameView(entity: entity, correct_guesses: correct_gueses, wrong_guesses: wrong_gueses, currentDayProgress: $currentDayProgress)
                                 
-                                AfterGameView(entity: entity, correct_guesses: correct_gueses, wrong_guesses: wrong_gueses)
                             }
                     }
             }

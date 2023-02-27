@@ -13,7 +13,16 @@ struct MainView: View {
     @State var Show_search_bar = false
     @State private var foldersToDelete: [FolderEntity]  = []
     @FetchRequest(sortDescriptors: []) var folders: FetchedResults<FolderEntity>
-    @State var c:Int = 0
+    @AppStorage("monday") var mondayProgress: Int = 0
+    @AppStorage("tuesday") var tuesdayProgress: Int = 0
+    @AppStorage("wednesday") var wednesdayProgress: Int = 0
+    @AppStorage("thursday") var thursdayProgress: Int = 0
+    @AppStorage("friday") var fridayProgress: Int = 0
+    @AppStorage("saturday") var saturdayProgress: Int = 0
+    @AppStorage("sunday") var sundayProgress: Int = 0
+    @AppStorage("currentWeek") var cWeek:Int = 0
+    let date = Date()
+    let calendar = Calendar.current
     var body: some View {
         NavigationStack{
             ZStack{
@@ -21,7 +30,7 @@ struct MainView: View {
                 
                 ScrollView(showsIndicators: false){
                     VStack{
-                        Home_Header()
+                        Home_Header(mondayProgress: $mondayProgress, tuesdayProgress: $tuesdayProgress, wednesdayProgress: $wednesdayProgress, thursdayProgress: $thursdayProgress, fridayProgress: $fridayProgress, saturdayProgress: $saturdayProgress, sundayProgress: $saturdayProgress, currentWeek:$cWeek)
                             .background(
                                 Circle()
                                     .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
@@ -32,17 +41,17 @@ struct MainView: View {
                         if Show_delete_menu{
                             Delete_menu(Show_menu: $Show_delete_menu, foldersToDelete: $foldersToDelete)
                                 .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                                .padding(.top, 90)
+                                .padding(.top, 60)
                         }
                         else if Show_search_bar{
                             Search_bar(Show_search_bar: $Show_search_bar)
                                 .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                                .padding(.top, 90)
+                                .padding(.top, 60)
                         }
                         else{
                             Folders_control_buttons(Show_menu: $Show_delete_menu, Show_search_bar: $Show_search_bar)
                                 .frame(width: UIScreen.main.bounds.width - 50, height: 65)
-                                .padding(.top, 90)
+                                .padding(.top, 60)
                         }
                         
                         
@@ -56,9 +65,10 @@ struct MainView: View {
                         else{
                             ForEach(folders){ Fname in
                                 //Text(Fname.FolderName)
-                                NavigationLink(destination: SetView(entity: Fname), label: {
+                                NavigationLink(destination: SetView(currentDayProgress: [ $sundayProgress, $mondayProgress, $tuesdayProgress, $wednesdayProgress, $thursdayProgress,$fridayProgress,$saturdayProgress][calendar.component(.weekday, from: date) - 1], entity: Fname), label: {
                                     if let cards = Fname.cards?.allObjects as? [CardEntity]{
                                         FolderView(FolderName: Fname.name ?? "UNKNOWN", CardCount: cards.count )}})
+                                .padding(.top, 5)
                                 //FolderView(FolderName: Fname.name ?? "UNKNOWN", CardCount: c)
                                 //.onTapGesture(perform: {moc.delete(Fname)
                                 //try? moc.save()})
@@ -73,10 +83,19 @@ struct MainView: View {
             }
         }
         .navigationBarHidden(true)
+        
     }
 }
 
 struct Home_Header: View {
+    @Binding var mondayProgress: Int
+    @Binding var tuesdayProgress: Int
+    @Binding var wednesdayProgress: Int
+    @Binding var thursdayProgress: Int
+    @Binding var fridayProgress: Int
+    @Binding var saturdayProgress: Int
+    @Binding var sundayProgress: Int
+    @Binding var currentWeek: Int
     var body: some View {
             VStack{
                 HStack{
@@ -94,40 +113,95 @@ struct Home_Header: View {
                 }
                 .padding(.horizontal)
                 
-                Weekly_goal_progress_bar()
-                    .frame(width: UIScreen.main.bounds.width - 50 - 80)
-                    .padding(.top, 20)
+                Weekly_goal_progress_bar(mondayProgress: $mondayProgress, tuesdayProgress: $tuesdayProgress, wednesdayProgress: $wednesdayProgress, thursdayProgress: $thursdayProgress, fridayProgress: $fridayProgress, saturdayProgress: $saturdayProgress, sundayProgress: $saturdayProgress, currentWeek:$currentWeek)
+                    //.frame(width: UIScreen.main.bounds.width - 50 - 80)
+                    
+                    .padding(.top, 10)
                 
                 //NavigationLink(destination: SelectFoldersFortheGameView(), label: {LearnSetsButton()})
                 
             }
+            
     }
 }
 
 
 struct Weekly_goal_progress_bar: View {
+    @Binding var mondayProgress: Int
+    @Binding var tuesdayProgress: Int
+    @Binding var wednesdayProgress: Int
+    @Binding var thursdayProgress: Int
+    @Binding var fridayProgress: Int
+    @Binding var saturdayProgress: Int
+    @Binding var sundayProgress: Int
+    @Binding var currentWeek: Int
+    let date = Date()
+    let calendar = Calendar.current
+    
      var body: some View {
         HStack{
-            ForEach(0..<7){ index in
+            ForEach(1..<8){ index in
                 Spacer()
-                
-                ZStack{
-                    RoundedRectangle(cornerRadius: 6)
-                        .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
-                        .frame(width:20, height: 120)
-                                
-                    RoundedRectangle(cornerRadius: 3)
-                        .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
-                        .frame(width:10, height: 110)
+                VStack{
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 6)
+                            .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), style: StrokeStyle(lineWidth: 4))
+                            .frame(width:20, height: 120)
+                        RoundedRectangle(cornerRadius: 3)
+                            .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
+                            .frame(width:10, height: 110)
+                            .opacity(0.3)
+                        VStack{
+                            Spacer()
+                            RoundedRectangle(cornerRadius: 3)
+                                .fill(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom))
+                                .frame(width:10, height: CGFloat([mondayProgress, tuesdayProgress, wednesdayProgress, thursdayProgress,fridayProgress,saturdayProgress, sundayProgress ][index - 1] * 110) / 3)
+                                .padding(.bottom, 7.5)
+                        }
+                    }
+                    .padding(.horizontal, 4)
+                    switch(index){
+                        case 1:
+                        Text("M")
+                        
+                        case 2:
+                        Text("T")
+                        case 3:
+                        Text("W")
+                        case 4:
+                        Text("T")
+                        case 5:
+                        Text("F")
+                        case 6:
+                        Text("S")
+                        case 7:
+                        Text("S")
+                    default:
+                        Text("?")
+                    }
                 }
-                .padding(.horizontal, 4)
                 
                 Spacer()
             }
         }
         .padding(.horizontal)
+        .onAppear(perform: {
+            if calendar.component(.weekOfYear, from: date) == currentWeek {
+                mondayProgress = 0
+                tuesdayProgress = 0
+                wednesdayProgress = 0
+                thursdayProgress = 0
+                fridayProgress = 0
+                saturdayProgress = 0
+                sundayProgress = 0
+            }
+        })
+        .onTapGesture(perform: {
+            print(calendar.component(.weekOfYear, from: date))
+        })
     }
 }
+    
 
 struct Folders_control_buttons: View {
     @Binding var Show_menu:Bool

@@ -14,6 +14,7 @@ struct SetView: View {
     @State var test : Bool = false
     @State var ShowDeleteMenu : Bool = false
     @State private var cardsToDelete: [CardEntity] = []
+    @Binding var currentDayProgress: Int
     let columns: [GridItem] = [
         GridItem(.fixed(170), spacing: nil, alignment: nil),
         GridItem(.fixed(170), spacing: nil, alignment: nil)
@@ -71,7 +72,7 @@ struct SetView: View {
                                 //.padding(.bottom, 200))
                          
                         
-                        Set_Header(entity: entity)
+                        Set_Header(entity: entity, currentDayProgress: $currentDayProgress)
                             .frame(width: 390)
                             .padding(.top, 10)
                              
@@ -161,6 +162,7 @@ struct SetView: View {
 
 struct Set_Header: View {
     let entity: FolderEntity
+    @Binding var currentDayProgress: Int
     var body: some View {
         VStack{
             HStack{
@@ -190,7 +192,7 @@ struct Set_Header: View {
             }
             .padding(.top, 35)
             
-            NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "LEARN")
+            NavigationLink(destination: SwipeCardsGameView(currentDayProgress: $currentDayProgress, entity: entity), label: {BlueButton(buttonText: "LEARN")
                     .frame(width: 200, height: 65)
                     .padding(.top, 20)
             } )
