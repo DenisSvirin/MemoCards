@@ -57,8 +57,13 @@ struct AfterGameView: View {
                             
                             .shadow(radius: 15)
                         HStack{
+                            if correct_guesses + wrong_guesses > 0{
+                                Rate_Circle(frame_size: 130, completion: Float(100 * correct_guesses / (correct_guesses + wrong_guesses)), noText: false, lineWidth: 10)
+                            }
+                            else{
+                                Rate_Circle(frame_size: 130, completion: 0.0, noText: false, lineWidth: 10)
 
-                            Rate_Circle(frame_size: 130, completion: Float(100 * correct_guesses / (correct_guesses + wrong_guesses)), noText: false, lineWidth: 10)
+                            }
                             
                             Spacer()
                             
@@ -119,7 +124,9 @@ struct AfterGameView: View {
                     }
                     .frame(width: 340, height: 200)
                     
-                    NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "RESTART")})
+                    NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "RESTART")
+                            .frame(width:200, height: 65)
+                    })
                         .kerning(3)
                         
                         

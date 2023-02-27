@@ -10,6 +10,7 @@ import SwiftUI
 struct SetView: View {
     @Environment(\.managedObjectContext) var moc
     @Environment(\.presentationMode) var presentationMode
+    @State var showSettings: Bool = false
     @State var test : Bool = false
     @State var ShowDeleteMenu : Bool = false
     @State private var cardsToDelete: [CardEntity] = []
@@ -26,7 +27,10 @@ struct SetView: View {
                 
                 ScrollView(showsIndicators: false){
                     VStack{
+                        
+                        
                         HStack{
+                            
                             NavigationLink(destination: MainView(), label: {
                             Image(systemName: "arrow.backward")
                                 .fontWeight(.bold)
@@ -50,21 +54,27 @@ struct SetView: View {
                                 .fontWeight(.bold)
                                 .foregroundColor(.white)
                                 .font(.title2)
+                                .onTapGesture {
+                                    showSettings.toggle()
+                                }
                             
                         }
+                         
+                        
                             .font(.headline)
-                            .padding(.top, 20)
+                        //.padding(.top)
                             .padding(.horizontal)
                             .background(Circle()
                                 .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
                                 .frame(width: 850, height: 850)
                                 .shadow(radius: 20))
                                 //.padding(.bottom, 200))
+                         
                         
                         Set_Header(entity: entity)
                             .frame(width: 390)
                             .padding(.top, 10)
-                            
+                             
                                 //))
                             //
                         
@@ -96,14 +106,11 @@ struct SetView: View {
                             .padding(.top, 80)
                             
                         }
+                                               
                         
                         
-                        /*
-                         
-                         }*/
                         
-                        
-                        ScrollView{
+                        VStack{
                             LazyVGrid(columns: columns){
                                 if let cards = entity.cards?.allObjects as? [CardEntity] {
                                     ForEach(cards) {card in
@@ -111,10 +118,13 @@ struct SetView: View {
                                             DeleteCardsView(card: card, cardsToDelete: $cardsToDelete)
                                         }
                                         else{
-                                            CardView(question: card.question ?? "?", answer: card.answer ?? "?", correct_guesses: Int(card.correct_guesses), wrong_guesses: Int(card.wrong_guesses))
+                                            NavigationLink(destination: EditCardView(entity: card, NewBackSide: card.question ?? "?", NewFrontSide:card.answer ?? "?"), label: {
+                                                CardView(question: card.question ?? "?", answer: card.answer ?? "?", correct_guesses: Int(card.correct_guesses), wrong_guesses: Int(card.wrong_guesses))
+                                                    .foregroundColor(.white)
+                                            })
                                         }
                                     }
-                                    .frame(height: 100)
+                                    
                                     .shadow(radius: 10)
                                     .padding(.top, 10)
                                 }
@@ -122,16 +132,29 @@ struct SetView: View {
                             
                             
                         }
+                        Spacer()
                     }
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                    
                     
                 }
             }
             .kerning(3)
+            .sheet(isPresented: $showSettings, content: {EditFolderView( newName: entity.name ?? "", SR: Float(entity.attempts != 0 ? 100 * entity.successRate / entity.attempts : 0),LR: Float(entity.cards?.count ?? 0 != 0 ? 100 * getLearntAmount() / (entity.cards?.count ?? 0): 0), entity: entity )})
         }
         .navigationBarHidden(true)
     }
-    
+    func getLearntAmount() -> Int{
+        var result = 0
+        if let cards = entity.cards?.allObjects as? [CardEntity] {
+            for card in cards {
+                if card.correct_guesses > 4{
+                    result += 1
+                }
+                
+            }
+        }
+        return result
+    }
     
 }
 
@@ -142,9 +165,7 @@ struct Set_Header: View {
         VStack{
             HStack{
                 VStack{
-                    
-                    
-                    Rate_Circle(frame_size: 140, completion: 100, noText: false, lineWidth: 10)
+                    Rate_Circle(frame_size: 140, completion: Float(entity.attempts != 0 ? 100 * entity.successRate / entity.attempts : 0), noText: false, lineWidth: 10)
                     
                     Text("SUCCESS")
                         .fontWeight(.semibold)
@@ -157,7 +178,7 @@ struct Set_Header: View {
                 Spacer()
                 
                 VStack{
-                    Rate_Circle(frame_size: 140, completion: Float(100 * getLearntAmount() / (entity.cards?.count ?? 0)), noText: false, lineWidth: 10)
+                    Rate_Circle(frame_size: 140, completion: Float(entity.cards?.count ?? 0 != 0 ? 100 * getLearntAmount() / (entity.cards?.count ?? 0): 0), noText: false, lineWidth: 10)
                     
                     Text("LEARNED")
                         .fontWeight(.semibold)
@@ -169,7 +190,10 @@ struct Set_Header: View {
             }
             .padding(.top, 35)
             
-            NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "LEARN")} )
+            NavigationLink(destination: SwipeCardsGameView(entity: entity), label: {BlueButton(buttonText: "LEARN")
+                    .frame(width: 200, height: 65)
+                    .padding(.top, 20)
+            } )
                     .padding(.top, 35)
         }
         

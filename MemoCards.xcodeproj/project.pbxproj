@@ -25,6 +25,8 @@
 		5391B95429A7FD8800A2A113 /* SwipeCardsGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5391B95329A7FD8800A2A113 /* SwipeCardsGameView.swift */; };
 		5391B95629A8007D00A2A113 /* BlueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5391B95529A8007D00A2A113 /* BlueButton.swift */; };
 		53B18C7B29AA396600CB4E1A /* AfterGameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B18C7A29AA396600CB4E1A /* AfterGameView.swift */; };
+		53B18C7D29AAAA0800CB4E1A /* EditCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B18C7C29AAAA0700CB4E1A /* EditCardView.swift */; };
+		53B18C7F29AAAA9B00CB4E1A /* EditFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B18C7E29AAAA9B00CB4E1A /* EditFolderView.swift */; };
 		53D2D9B4299E1F0B005B12C7 /* SetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2D9B3299E1F0B005B12C7 /* SetView.swift */; };
 		53D2D9B6299E2800005B12C7 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D2D9B5299E2800005B12C7 /* CardView.swift */; };
 		53F9A32F29A79FB900C8250A /* AddCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F9A32E29A79FB900C8250A /* AddCardView.swift */; };
@@ -52,6 +54,8 @@
 		5391B95329A7FD8800A2A113 /* SwipeCardsGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeCardsGameView.swift; sourceTree = "<group>"; };
 		5391B95529A8007D00A2A113 /* BlueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlueButton.swift; sourceTree = "<group>"; };
 		53B18C7A29AA396600CB4E1A /* AfterGameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AfterGameView.swift; sourceTree = "<group>"; };
+		53B18C7C29AAAA0700CB4E1A /* EditCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCardView.swift; sourceTree = "<group>"; };
+		53B18C7E29AAAA9B00CB4E1A /* EditFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFolderView.swift; sourceTree = "<group>"; };
 		53D2D9B3299E1F0B005B12C7 /* SetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetView.swift; sourceTree = "<group>"; };
 		53D2D9B5299E2800005B12C7 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		53ED9C02299C2E510099B95C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -144,6 +148,8 @@
 				53F9A33029A7ACD100C8250A /* DeleteFoldersView.swift */,
 				5391B95129A7DCEE00A2A113 /* DeleteCardsView.swift */,
 				53F9A32E29A79FB900C8250A /* AddCardView.swift */,
+				53B18C7C29AAAA0700CB4E1A /* EditCardView.swift */,
+				53B18C7E29AAAA9B00CB4E1A /* EditFolderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,8 +240,10 @@
 				536004182997CBB900CBB84F /* FolderView.swift in Sources */,
 				5328695829A6C36A00852085 /* MemoCards.xcdatamodeld in Sources */,
 				53B18C7B29AA396600CB4E1A /* AfterGameView.swift in Sources */,
+				53B18C7D29AAAA0800CB4E1A /* EditCardView.swift in Sources */,
 				532A94FC29A5644500E6A311 /* AddButton.swift in Sources */,
 				5391B95229A7DCEE00A2A113 /* DeleteCardsView.swift in Sources */,
+				53B18C7F29AAAA9B00CB4E1A /* EditFolderView.swift in Sources */,
 				532A94F929A55EE700E6A311 /* AddFolderView.swift in Sources */,
 				53FBB29E29986302005C6673 /* MemoCardsApp.swift in Sources */,
 				5391B95629A8007D00A2A113 /* BlueButton.swift in Sources */,

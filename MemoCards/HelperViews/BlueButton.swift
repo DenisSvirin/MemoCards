@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BlueButton: View {
     let buttonText: String
+    var fontsize = Font.title
     var body: some View {
         ZStack{
             RoundedRectangle(cornerRadius: 20)
@@ -16,13 +17,8 @@ struct BlueButton: View {
                 
             Text(buttonText.uppercased())
                 .fontWeight(.semibold)
-                .font(.title)
+                .font(fontsize)
                 .foregroundColor(Color(red: 2/255, green: 17/255, blue: 27/255))
         }
-        .frame(width: 200, height: 65)
-       
-        
-        
-        .padding(.top, 30)
     }
 }

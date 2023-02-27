@@ -35,6 +35,8 @@ struct AddFolderView: View {
                     .onTapGesture {
                         let newFolder = FolderEntity(context: moc)
                         newFolder.name = NewFolderName
+                        newFolder.successRate = 0
+                        newFolder.attempts = 0
                         //folderViewModel.Folders.append(MCFolder(FolderName: NewFolderName, Cards: []) )
                         try? moc.save()
                         presentationMode.wrappedValue.dismiss()
