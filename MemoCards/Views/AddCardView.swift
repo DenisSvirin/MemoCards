@@ -14,9 +14,10 @@ struct AddCardView: View {
     @State var answer: String = ""
     let entity: FolderEntity
     var body: some View {
+        
         ZStack{
             Color(red: 128/255, green: 138/255, blue: 159/255).edgesIgnoringSafeArea(.all)
-            VStack{
+            VStack(spacing: 30){
                 Text("Create new card".uppercased())
                     .fontWeight(.bold)
                     .font(.system(size: 27))
@@ -29,45 +30,74 @@ struct AddCardView: View {
                             .padding(.bottom, 780))
                     .shadow(radius: 10, y: 6)
                 VStack{
-                    HStack{
-                        Text("FRONTSIDE".uppercased())
-                            .fontWeight(.bold)
-                            .font(.subheadline)
-                        .kerning(3)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
+                            .shadow(radius: 15)
                         
-                        Spacer()
+                        VStack{
+                            Text("frontside".uppercased())
+                                .fontWeight(.bold)
+                                .font(.subheadline)
+                                .kerning(3)
+                                .padding(.top, 10)
+                            
+                            Spacer()
+                            
+                            TextEditor(text: $question)
+                                .padding(.horizontal)
+                                .scrollContentBackground(.hidden)
+                                .background(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                .frame(width: 300, height: 100)
+                                .overlay(RoundedRectangle(cornerRadius: 20)
+                                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
+                            
+                                .cornerRadius(20)
+                                .padding(.bottom, 20)
+                                .multilineTextAlignment(.center)
+                        }
                     }
-                    TextField("Type your question", text: $question)
-                        .padding(.horizontal)
-                        .frame(height: 55)
-                        .overlay(RoundedRectangle(cornerRadius: 20)
-                            .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
-                    
-                        .cornerRadius(20)
+                    .frame(width: 370)
+                    .padding(.top, 180)
                     
                     Spacer()
                     
-                    HStack{
-                        Text("BACKSIDE".uppercased())
-                            .fontWeight(.bold)
-                            .font(.subheadline)
-                        .kerning(3)
+                    ZStack{
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
+                            .shadow(radius: 15)
                         
-                        Spacer()
+                        VStack{
+                            Text("backside".uppercased())
+                                .fontWeight(.bold)
+                                .font(.subheadline)
+                                .kerning(3)
+                                .padding(.top, 10)
+                            
+                            Spacer()
+                            
+                            TextEditor(text: $answer)
+                                .padding(.horizontal)
+                                .scrollContentBackground(.hidden)
+                                .background(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                .frame(width: 300, height: 100)
+                                .overlay(RoundedRectangle(cornerRadius: 20)
+                                    .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
+                            
+                                .cornerRadius(20)
+                                .padding(.bottom, 20)
+                                .multilineTextAlignment(.center)
+                        }
                     }
-                   
-                    TextField("Type your answer", text: $answer)
-                        .padding(.horizontal)
-                        .frame(height: 55)
-                        .overlay(RoundedRectangle(cornerRadius: 20)
-                            .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
-                    
-                        .cornerRadius(20)
-                        
+                    .frame(width: 370)
+                    .padding(.top, 30)
+                     
                 }
             
                 .frame(width: UIScreen.main.bounds.width - 50, height: 200)
                 .padding(.top, 30)
+                
+                Spacer()
                 
                 AddButton()
                     .padding(.top, 30)

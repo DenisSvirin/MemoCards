@@ -141,13 +141,13 @@ struct PlayingCardView: View {
                         if flipped {
                             Text(card.answer ?? "?")
                                 .opacity(1 - getOpacityAmount())
-                                .frame(width: 340, height: 500)
+                                .frame(width: 300, height: 500)
                                 .multilineTextAlignment(.center)
                         }
                         else{
                             Text(card.question ?? "?")
                                 .opacity(1 - getOpacityAmount())
-                                .frame(width: 340, height: 500)
+                                .frame(width: 300, height: 500)
                                 .multilineTextAlignment(.center)
                         }
                         if offset.width > 0{
@@ -214,7 +214,7 @@ struct PlayingCardView: View {
     
     func flyingCard() -> Void{
         
-        if offset.width > UIScreen.main.bounds.width * 0.4 {
+        if abs(offset.width) > UIScreen.main.bounds.width * 0.4 {
             offset =  CGSize(width: UIScreen.main.bounds.width / 2 + 300, height: offset.height)
             cardIndex += 1
             card.correct_guesses += 1

@@ -55,56 +55,71 @@ struct EditCardView: View {
                         .font(.title2)
                         //.padding(.top, 20)
                         .padding(.horizontal, 30)
-                   
-                        ZStack{
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
-                                .shadow(radius: 15)
-                            VStack{
-                                Text("BACKSIDE")
-                                    .kerning(3)
-                                    .font(.title2)
-                                    .fontWeight(.bold)
-                                    .foregroundColor(.white)
-                                
-                                Spacer()
-                                
-                                TextField("Type something here...", text: $NewBackSide)
-                                    .foregroundColor(.white)
-                                    .padding(.horizontal)
-                                    .frame(width: 300, height: 55)
-                                    .overlay(RoundedRectangle(cornerRadius: 20)
-                                        .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
-                            }
-                            .padding(.vertical)
-                        }
-                        .frame(width: min(370 ,UIScreen.main.bounds.width - 50), height: 120)
                         
                         ZStack{
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
                                 .shadow(radius: 15)
+                            
                             VStack{
-                                Text("FRONTSIDE")
-                                    .kerning(3)
-                                    .font(.title2)
+                                Text("frontside".uppercased())
                                     .fontWeight(.bold)
-                                    .foregroundColor(.white)
+                                    .font(.subheadline)
+                                    .kerning(3)
+                                    .padding(.top, 10)
                                 
                                 Spacer()
                                 
-                                TextField("Type something here...", text: $NewFrontSide)
-                                    .foregroundColor(.white)
+                                TextEditor(text: $NewBackSide)
                                     .padding(.horizontal)
-                                    .frame(width: 300, height: 55)
+                                    .scrollContentBackground(.hidden)
+                                    .background(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                    .frame(width: 300, height: 100)
                                     .overlay(RoundedRectangle(cornerRadius: 20)
                                         .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
+                                
+                                    .cornerRadius(20)
+                                    .padding(.bottom, 20)
+                                    .multilineTextAlignment(.center)
                             }
-                            .padding(.vertical)
                         }
-                        .frame(width: min(370 ,UIScreen.main.bounds.width - 50), height: 120)
+                        .frame(width: 370)
                         
-                 
+                        BlueButton(buttonText: "swap", fontsize: .headline, buttonIcon:"rectangle.2.swap")
+                            .frame(width: 130, height: 50)
+                            .onTapGesture(perform: {
+                                swapSides()
+                            })
+                        
+                        ZStack{
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                .shadow(radius: 15)
+                            
+                            VStack{
+                                Text("backside".uppercased())
+                                    .fontWeight(.bold)
+                                    .font(.subheadline)
+                                    .kerning(3)
+                                    .padding(.top, 10)
+                                
+                                Spacer()
+                                
+                                TextEditor(text: $NewFrontSide)
+                                    .padding(.horizontal)
+                                    .scrollContentBackground(.hidden)
+                                    .background(Color(red: 2/255, green: 17/255, blue: 27/255))
+                                    .frame(width: 300, height: 100)
+                                    .overlay(RoundedRectangle(cornerRadius: 20)
+                                        .stroke(LinearGradient(gradient: Gradient(colors: [Color(red: 19/255, green: 231/255, blue: 79/255), Color(red: 228/255, green: 239/255, blue: 24/255)]), startPoint: .top, endPoint: .bottom), lineWidth: 3))
+                                
+                                    .cornerRadius(20)
+                                    .padding(.bottom, 20)
+                                    .multilineTextAlignment(.center)
+                            }
+                        }
+                        .frame(width: 370)
+                        
                         ZStack{
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(Color(red: 2/255, green: 17/255, blue: 27/255))
@@ -131,7 +146,7 @@ struct EditCardView: View {
                             }
                             .padding(.horizontal)
                         }
-                        .frame(width: min(370 ,UIScreen.main.bounds.width - 50), height: 80)
+                        .frame(width: 370, height: 80)
                         Spacer()
                         
                     }
@@ -139,6 +154,12 @@ struct EditCardView: View {
             }
         }
         .navigationBarHidden(true)
+    }
+    func swapSides(){
+        
+        let x = NewBackSide
+        NewBackSide = NewFrontSide
+        NewFrontSide = x
     }
 }
 
