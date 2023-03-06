@@ -185,8 +185,10 @@ struct Weekly_goal_progress_bar: View {
             }
         }
         .padding(.horizontal)
+        
         .onAppear(perform: {
-            if calendar.component(.weekOfYear, from: date) == currentWeek {
+            if calendar.component(.weekOfYear, from: date) != currentWeek {
+                currentWeek = calendar.component(.weekOfYear, from: date)
                 mondayProgress = 0
                 tuesdayProgress = 0
                 wednesdayProgress = 0
@@ -196,9 +198,7 @@ struct Weekly_goal_progress_bar: View {
                 sundayProgress = 0
             }
         })
-        .onTapGesture(perform: {
-            print(calendar.component(.weekOfYear, from: date))
-        })
+        
     }
 }
     

@@ -53,7 +53,7 @@ struct SwipeCardsGameView: View {
                                         .padding(.top, 20)
                                     
                                     //backside
-                                    PlayingCardView(entity:entity, card: cards[cardIndex], flipped: false, cardIndex: $cardIndex, offset: $offset, correct_gueses: $correct_gueses, wrong_gueses: $wrong_gueses)
+                                    PlayingCardView(entity:entity, card: cards[cardIndex], flipped: false, isFlipped: $isFlipped, backDegree: $backDegree, frontDegree:  $frontDegree, cardIndex: $cardIndex, offset: $offset, correct_gueses: $correct_gueses, wrong_gueses: $wrong_gueses)
                                         .foregroundColor(.white)
                                         .shadow(radius: 15)
                                         .rotation3DEffect(Angle(degrees: backDegree), axis: (x:0, y:1, z:0))
@@ -61,7 +61,7 @@ struct SwipeCardsGameView: View {
                                             flipCard()
                                         }
                                     // frontside
-                                    PlayingCardView(entity:entity, card: cards[cardIndex], flipped: true, cardIndex: $cardIndex, offset: $offset, correct_gueses: $correct_gueses, wrong_gueses: $wrong_gueses)
+                                    PlayingCardView(entity:entity, card: cards[cardIndex], flipped: true, isFlipped: $isFlipped,backDegree: $backDegree, frontDegree:  $frontDegree, cardIndex: $cardIndex, offset: $offset, correct_gueses: $correct_gueses, wrong_gueses: $wrong_gueses)
                                         .foregroundColor(.white)
                                         .shadow(radius: 15)
                                         .rotation3DEffect(Angle(degrees: frontDegree), axis: (x:0, y:1, z:0))
@@ -110,11 +110,15 @@ struct PlayingCardView: View {
     @Environment(\.managedObjectContext) var moc
     let entity: FolderEntity
     let card: CardEntity
-    let flipped: Bool
+    var flipped: Bool
+    @Binding var isFlipped: Bool
+    @Binding var backDegree: Double
+    @Binding var frontDegree: Double
     @Binding var cardIndex: Int
     @Binding var offset: CGSize
     @Binding var correct_gueses: Int
     @Binding var wrong_gueses: Int
+    
     
     var body: some View {
       
@@ -137,10 +141,14 @@ struct PlayingCardView: View {
                         if flipped {
                             Text(card.answer ?? "?")
                                 .opacity(1 - getOpacityAmount())
+                                .frame(width: 340, height: 500)
+                                .multilineTextAlignment(.center)
                         }
                         else{
                             Text(card.question ?? "?")
                                 .opacity(1 - getOpacityAmount())
+                                .frame(width: 340, height: 500)
+                                .multilineTextAlignment(.center)
                         }
                         if offset.width > 0{
                                Text("KNOW")
@@ -211,7 +219,11 @@ struct PlayingCardView: View {
             cardIndex += 1
             card.correct_guesses += 1
             correct_gueses += 1
+            if isFlipped{
+                flipCard()
+            }
             if correct_gueses > wrong_gueses && entity.cards?.count ?? 0 <= cardIndex {
+                
                 entity.successRate += 1
                 entity.attempts += 1
             }
@@ -235,6 +247,25 @@ struct PlayingCardView: View {
         }
               
         offset =  .zero
+    }
+    func flipCard(){
+        isFlipped.toggle()
+        if isFlipped {
+            withAnimation(.linear(duration: 0.3)){
+                backDegree = 90
+            }
+            withAnimation(.linear(duration: 0.3).delay(0.3)){
+                frontDegree = 0
+            }
+        }
+        else{
+            withAnimation(.linear(duration: 0.3)){
+                frontDegree = -90
+            }
+            withAnimation(.linear(duration: 0.3).delay(0.3)){
+                backDegree = 0
+            }
+        }
     }
 }
 
