@@ -214,7 +214,7 @@ struct PlayingCardView: View {
     
     func flyingCard() -> Void{
         
-        if abs(offset.width) > UIScreen.main.bounds.width * 0.4 {
+        if offset.width > UIScreen.main.bounds.width * 0.4 {
             offset =  CGSize(width: UIScreen.main.bounds.width / 2 + 300, height: offset.height)
             cardIndex += 1
             card.correct_guesses += 1
@@ -236,6 +236,9 @@ struct PlayingCardView: View {
             return
         }
         else if offset.width < -UIScreen.main.bounds.width * 0.4 {
+            if isFlipped{
+                flipCard()
+            }
             offset =  CGSize(width: -UIScreen.main.bounds.width / 2 - 300, height: offset.height)
             cardIndex += 1
             card.wrong_guesses += 1
